@@ -1,0 +1,19 @@
+--object composition
+Books
+book_id
+quantity
+nested table {book_title, publication_date}
+
+--object composition
+Members
+member_id
+neste table {address, first_name, last_name, phone_no, email, other_details}
+
+--simple table
+Loans 
+loan_id
+member_id
+book_id
+request_date
+return_date
+other_details
