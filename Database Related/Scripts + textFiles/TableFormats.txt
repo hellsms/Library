@@ -17,3 +17,8 @@ book_id
 request_date
 return_date
 other_details
+
+Solved in PL/SQl :
+	1 5p
+	5 2p
+	7 2p
