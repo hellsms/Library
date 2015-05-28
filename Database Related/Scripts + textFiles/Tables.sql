@@ -1,8 +1,7 @@
-set serveroutput on;
 
 --Books
 
-drop type book;
+drop force type book;
 /
 create or replace type book as object(
 title          varchar2(200),
@@ -10,16 +9,18 @@ date_of_publication date null
 );
 /
 
-drop type books;
+drop force type books;
 /
 create or replace type books as table of book;
 /
 
-drop table all_books;
+drop force table all_books;
 /
 create table all_books(
 book_id             number(10,0) not null,
-quantity            integer null
+quantity            integer null,
+available           integer null,
+loaned             integer null
 );
 /
 
@@ -36,7 +37,7 @@ select * from all_books;
 
 --Members
 
-drop type member;
+drop force type member;
 /
 create or replace type member as object(
 address             varchar2(200) not null,
@@ -48,12 +49,12 @@ other_details       varchar2(200) null
 );
 /
 
-drop type members;
+drop force type members;
 /
 create or replace type members as table of member;
 /
 
-drop table all_members;
+drop force table all_members;
 /
 create table all_members(
 member_id      number(10,0) not null
@@ -73,7 +74,7 @@ select * from all_members;
 
 --Authors
 
-drop table authors;
+drop force table authors;
 /
 create table authors(
 author_id     number(10,0) not null,
@@ -85,7 +86,7 @@ constraint author_pk primary key (author_id)
 
 --Categories
 
-drop table categories;
+drop force table categories;
 /
 create table categories(
 category_id       number(10,0) not null,
@@ -95,7 +96,7 @@ constraint category_pk primary key (category_id)
 
 --Books by Author
 
-drop table books_by_author;
+drop force table books_by_author;
 /
 create table books_by_author(
 author_id       number(10,0) not null,
@@ -107,7 +108,7 @@ constraint bba_book_fk foreign key (book_id) references all_books(book_id)
 
 --Books by Category
 
-drop table books_by_category;
+drop force table books_by_category;
 /
 create table books_by_category(
 category_id       number(10,0) not null,
@@ -119,7 +120,7 @@ constraint bbc_book_fk foreign key (book_id) references all_books(book_id)
 
 --Member loans
 
-drop table all_loans;
+drop force table all_loans;
 /
 create table all_loans(
 loan_id             number(10,0) not null,

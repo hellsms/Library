@@ -2,9 +2,9 @@
 drop sequence inc_all_books;
 /
 create sequence inc_all_books
-  minvalue 0
-  maxvalue 1000000000
-  start with 0
+  minvalue 1
+  maxvalue 9999999999
+  start with 1
   increment by 1
   nocache;
 /
@@ -12,18 +12,38 @@ create sequence inc_all_books
 drop sequence inc_all_members;
 /
 create sequence inc_all_members
-  minvalue 0
-  maxvalue 1000000000
-  start with 0
+  minvalue 1
+  maxvalue 9999999999
+  start with 1
   increment by 1
   nocache;
   
 drop sequence inc_all_loans;
 /
 create sequence inc_all_loans
-  minvalue 0
-  maxvalue 1000000000
-  start with 0
+  minvalue 1
+  maxvalue 9999999999
+  start with 1
+  increment by 1
+  nocache;
+/
+
+drop sequence inc_all_authors;
+/
+create sequence inc_all_authors
+  minvalue 1
+  maxvalue 9999999999
+  start with 1
+  increment by 1
+  nocache;
+/
+
+drop sequence inc_all_categories;
+/
+create sequence inc_all_categories
+  minvalue 1
+  maxvalue 9999999999
+  start with 1
   increment by 1
   nocache;
 /
@@ -63,4 +83,28 @@ create or replace trigger inc_loans
   end;
 /
 alter trigger inc_loans enable;
+/
+
+create or replace trigger inc_authors
+    before insert on authors 
+    for each row
+  begin
+    select inc_all_authors.NEXTVAL
+    into   :new.author_id
+    from   dual;
+  end;
+/
+alter trigger inc_authors enable;
+/
+
+create or replace trigger inc_categories
+    before insert on categories 
+    for each row
+  begin
+    select inc_all_categories.NEXTVAL
+    into   :new.category_id
+    from   dual;
+  end;
+/
+alter trigger inc_categories enable;
 /
