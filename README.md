@@ -1,2 +1,2 @@
 # Library
-Java + PL/SQL Project
+Java + PL/SQL library management project 
