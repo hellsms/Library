@@ -1,2 +1,2 @@
 # Library
-Java + PL/SQL library management project 
+Java application for mananging a library-themed database.
